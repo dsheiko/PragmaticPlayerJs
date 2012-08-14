@@ -1,4 +1,4 @@
-PragmaticPlayerJs v. 1.0 beta
+PragmaticPlayerJs v. 0.1
 =================
 
 Easy-to-customize responsive player for embedded Youtube or HTML5 videos
@@ -30,11 +30,11 @@ Youtube player
 HTML video player
 
     <div id="html5-video">
-        <video poster="../demo/assets/poster.jpg" preload="true">
+        <video poster="./assets/poster.jpg" preload="true">
                 <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-            <source type="video/mp4" src="../demo/assets/test.mp4" />
+            <source type="video/mp4" src="./assets/test.mp4" />
             <!-- Ogg/Vorbis for older Firefox and Opera versions -->
-            <source type="video/ogg" src="../demo/assets/test.ogv" />
+            <source type="video/ogg" src="./assets/test.ogv" />
         </video>
     </div>
 
