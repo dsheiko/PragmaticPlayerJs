@@ -101,7 +101,8 @@ body > footer {
 }
 body > footer > article {
     color: #868686;
-    width: 880px;
+    min-width: 880px;
+    max-width: 80%;
     font-size: 12px;
     padding: 20px 30px;
     margin: 0 auto;
