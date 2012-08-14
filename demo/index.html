@@ -42,11 +42,11 @@
                 <article>
                     <h2>HTML Video Player with Youtube player fallback Demo</h2>
                     <div id="html5-video">
-                        <video poster="../demo/assets/poster.jpg" preload="true">
+                        <video poster="http://demo.dsheiko.com/pplayer/assets/poster.jpg" preload="true">
                              <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-                            <source type="video/mp4" src="../demo/assets/test.mp4" />
+                            <source type="video/mp4" src="http://demo.dsheiko.com/pplayer/assets/test.mp4" />
                             <!-- Ogg/Vorbis for older Firefox and Opera versions -->
-                            <source type="video/ogg" src="../demo/assets/test.ogv" />
+                            <source type="video/ogg" src="http://demo.dsheiko.com/pplayer/assets/test.ogv" />
                         </video>
                     </div>
 
@@ -137,13 +137,11 @@ $("#html5-video").pPlayer({
                 $("#youtube-video").pPlayer({
                     youtubeVideoId: "YE7VzlLtp-4",
                     autoplay: 0,
-                    origin: "http://os.sheiko.crylan.com",
                     features: [ "playpause", "progress", "timer", "mute", "fullscreen" ]
                 });
                 $("#html5-video").pPlayer({
                     youtubeVideoId: "YE7VzlLtp-4",
-                    autoplay: 0,
-                    origin: "http://os.sheiko.crylan.com"
+                    autoplay: 0
                 });
             });
 
