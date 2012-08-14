@@ -11,7 +11,7 @@
         <link rel="publisher" href="https://plus.google.com/113857365337532405020" />
         <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
-        <link rel="demo" href="http://demo.dsheiko.com/pmp" title="Pragmatic Media Player" />
+        <link rel="demo" href="http://demo.dsheiko.com/pplayer" title="Pragmatic Player" />
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -20,32 +20,29 @@
         <header role="banner">
             <div>
                 <hgroup>
-                    <h1>Pragmatic Player.JS</h1>
-                    <h2>Easy-to-customize player for embedded youtube or HTML5 videos</h2>
+                    <h1>Pragmatic Player .JS</h1>
+                    <h2>Easy-to-customize responsive player for embedded Youtube or HTML5 videos</h2>
                 </hgroup>
-                <!--a class="fork" href="http://code.google.com/p/jquery-sharebar/">Fork Me on Google Code</a-->
+                <a class="fork" href="https://github.com/dsheiko/PragmaticPlayerJs">Fork Me on GitHub</a>
             </div>
         </header>
         <section role="main">
             <div>
                 <article>
                     <h2>Introduction</h2>
-                    <p>Let you to customize as youtube as well as HTML5 video player</p>
-
+                    <p>This player has adapters for Youtube and HTML video APIs. So you can use it as customizable Youtube player or as HTML video player with fallback to Youtube player if the user browser doesn't support HTML5 video element.</p>
+                    <p>
+                       The player is aware of the vandalic way <a href="http://www.divx.com/">DivX</a> embeds its own web player when installed, and tries to fix it gratefully.
+                    </p>
                 </article>
                 <article>
-                    <h2>Youtube Custom Skin Demo</h2>
-
-                    <div id="youtube-video">
-                        Default something
-                    </div>
-
+                    <h2>Youtube Custom Player Demo</h2>
+                    <div id="youtube-video"><!-- --></div>
                 </article>
                 <article>
-                    <h2>HTML Video Demo</h2>
-
+                    <h2>HTML Video Player with Youtube player fallback Demo</h2>
                     <div id="html5-video">
-                        <video poster="../demo/assets/poster.jpg" preload="none">
+                        <video poster="../demo/assets/poster.jpg" preload="true">
                              <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
                             <source type="video/mp4" src="../demo/assets/test.mp4" />
                             <!-- Ogg/Vorbis for older Firefox and Opera versions -->
@@ -57,32 +54,83 @@
 
                 <article>
                     <h2>Usage and API</h2>
-                    <p>.....</p>
+
+                    <p>Include player script and CSS on the page:</p>
                     <textarea class="code">
+<link rel="stylesheet" type="text/css" href="../pplayer/assets/pplayer.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                    </textarea>
+
+                    <p>Youtube player</p>
+                    <textarea class="code">
+<div id="youtube-video"><!-- --></div>
+                    </textarea>
+                    <textarea class="code" rows="5">
 $("#youtube-video").pPlayer({
     youtubeVideoId: "YE7VzlLtp-4",
-    autoplay: 1,
+    autoplay: 0,
     origin: "http://yoursite.com"
 });
                     </textarea>
+
+<p>HTML video player</p>
+                    <textarea class="code" rows="8">
+<div id="html5-video">
+    <video poster="../demo/assets/poster.jpg" preload="true">
+            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+        <source type="video/mp4" src="../demo/assets/test.mp4" />
+        <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+        <source type="video/ogg" src="../demo/assets/test.ogv" />
+    </video>
+</div>
+                    </textarea>
+                    <textarea class="code"  rows="3">
+$("#html5-video").pPlayer({
+    youtubeVideoId: "YE7VzlLtp-4"
+});
+                    </textarea>
+
+                    <h3>Available Options</h3>
+                    <dl>
+
+                    <dt>youtubeVideoId</dt>
+                    <dd>The YouTube video ID that identifies the video that the player will load.</dd>
+
+                    <dt>autoplay</dt>
+                    <dd>Values: <var>0</var> or <var>1</var>. Default is <var>0</var>. Sets whether or not the initial video will <var>autoplay</var> when the player loads.</dd>
+
+                    <dt>hd</dt>
+                    <dd>Values: <var>0</var> or <var>1</var>. Default is <var>1</var>. Setting to <var>1</var> enables HD playback by default. </dd>
+
+                    <dt>origin</dt>
+                    <dd>As an extra security measure, you should include the <var>origin</var> parameter to the URL, specifying the URL scheme (http:// or https://) and full domain of your host page as the parameter value. While <var>origin</var> is optional, including it protects against malicious third-party JavaScript being injected into your page and hijacking control of your player.</dd>
+
+                    <dt>adapter</dt>
+                    <dd>Used to specify video API adapter explicitly. Can be either <var>VideoElement</var> or <var>Youtube</var></dd>
+
+                    <dt>features</dt>
+                    <dd>List of enabled features. By default it is <var>["playpause", "progress", "timer", "mute", "fullscreen"]</var></dd>
+
+                </dl>
+
                 </article>
 
-                <!--div class="download">
-                    <a class="btn btn-inverse btn-large" href="http://code.google.com/p/jquery-sharebar/downloads/list">Download the latest version from GitHub</a>
-                </div-->
+                <div class="download">
+                    <a class="btn btn-inverse btn-large" href="https://github.com/dsheiko/PragmaticPlayerJs">Download the latest version from GitHub</a>
+                </div>
             </div>
         </section>
         <footer>
-            <!--article>
-                <p><var>sharebar.js</var> is created by <a href="http://dsheiko.com">Dmitry Sheiko</a>.
-                    It's released under the GPLv2 license. </p>
-                <p>If you have any questions or feedback you can use the <a href="http://code.google.com/p/jquery-sharebar/">google code project page.</a>
+            <article>
+                <p><var>PragaticPlayer.js</var> is created by <a href="http://dsheiko.com">Dmitry Sheiko</a>.
+                    It's released under the MIT license. </p>
+                <p>If you have any questions or feedback you can use the <a href="https://github.com/dsheiko/PragmaticPlayerJs">project page.</a>
                 </p>
-            </article-->
+            </article>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <!--script src="http://demo.dsheiko.com/share/js/sharebar.js" type="text/javascript"></script-->
+        <script src="http://demo.dsheiko.com/share/js/sharebar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../pplayer/js/jquery.pplayer.js"></script>
         <script type="text/javascript">
             $( document ).on("ready", function(){

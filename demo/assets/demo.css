@@ -46,7 +46,8 @@ body > header {
 }
 body > header > div {
     position: relative;
-    width: 880px;
+    min-width: 880px;
+    max-width: 80%;
     padding: 0px 30px;
     margin: 0 auto;
     color: #fff;
@@ -69,7 +70,8 @@ header nav {
     display: none;
 }
 body > section {
-    width: 880px;
+    min-width: 880px;
+    max-width: 80%;
     min-height: 600px;
     margin: 0 auto;
     background-color: white;
