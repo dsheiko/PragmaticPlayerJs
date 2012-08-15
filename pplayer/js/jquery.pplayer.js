@@ -1,4 +1,14 @@
+/*
+* PragmaticPlayer.Js
+*
+* @package PragmaticPlayer.Js
+* @author $Author: sheiko $
+* @version $Id: jquery.pplayer.js, v 0.1 $
+* @license MIT
+* @copyright (c) Dmitry Sheiko http://www.dsheiko.com
+*/
 (function( window, undefined ){
+    "use strict";
     var $ = window.jQuery,
         document = window.document,
         _instanceCounter = 0,
