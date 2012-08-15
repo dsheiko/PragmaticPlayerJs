@@ -29,149 +29,161 @@
     overflow: hidden;
     background: url(./img/loading.gif) center center no-repeat;
 }
-.ppVideoWrapper video,
-.ppVideoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    .ppVideoWrapper video,
+    .ppVideoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .ppVideoWrapper.fullscreen {
+        position: fixed;
+        z-index: 50000;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 0;
+        height: 100%;
+        overflow: none;
+    }
+
+    .ppVideoWrapper .controls {
+        position: absolute;
+        display: table;
+        table-layout: fixed;
+        height: 35px;
+        width: 100%;
+        bottom: 0;
+        background-color: #191919;
+    }
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+    .ppVideoWrapper .controls {
+         transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        -o-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+
+        transition: transform 500ms;
+        -moz-transition: -moz-transform 500ms;
+        -webkit-transition: -webkit-transform 500ms;
+        -o-transition: -o-transform 500ms;
+        -ms-transition: -ms-transform 500ms;
+    }
+    .ppVideoWrapper:hover .controls {
+        transform: translateY(0);
+        -moz-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -o-transform: translateY(0);
+        -ms-transform: translateY(0);
+    }
 }
 
-.ppVideoWrapper.fullscreen {
-    position: fixed;
-    z-index: 50000;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    padding: 0;
-    height: 100%;
-    overflow: none;
-}
+        .ppVideoWrapper .controls > div {
+            display: table-row;
+        }
+        .ppVideoWrapper .controls > div > * {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            height: 35px;
+        }
+        .ppVideoWrapper .controls > div > .button {
+            width: 32px;
+        }
 
-.ppVideoWrapper .controls {
-    position: absolute;
-    display: table;
-    table-layout: fixed;
-    height: 35px;
-    width: 100%;
-    bottom: 0;
-    background-color: #191919;
-    transform: translateY(100%);
-    -moz-transform: translateY(100%);
-    -webkit-transform: translateY(100%);
-    -o-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-
-    transition: transform 500ms;
-    -moz-transition: -moz-transform 500ms;
-    -webkit-transition: -webkit-transform 500ms;
-    -o-transition: -o-transform 500ms;
-    -ms-transition: -ms-transform 500ms;
-}
-.ppVideoWrapper:hover .controls {
-    transform: translateY(0);
-    -moz-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -o-transform: translateY(0);
-    -ms-transform: translateY(0);
-}
-
-.ppVideoWrapper .controls > div {
-    display: table-row;
-}
-.ppVideoWrapper .controls > div > * {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    height: 35px;
-}
-.ppVideoWrapper .controls > div > .button {
-    width: 32px;
-}
-
-.ppVideoWrapper .controls button {
-    width: 16px;
-    height: 16px;
-    border: 0;
-    cursor: pointer;
-    display: block;
-    position: relative;
-    margin: 0 auto;
-}
-.ppVideoWrapper .controls button.play {
-    background: url(./img/controls.png) 0 0 no-repeat;
-}
-.ppVideoWrapper .controls button.pause {
-    background: url(./img/controls.png) 0 -16px no-repeat;
-    display: none;
-}
-.ppVideoWrapper .controls button.unmute {
-    background: url(./img/controls.png) -16px 0px no-repeat;
-    display: none;
-}
-.ppVideoWrapper .controls button.mute {
-    background: url(./img/controls.png) -16px -16px no-repeat;
-}
-.ppVideoWrapper .controls button.enterFullscreen {
-    background: url(./img/controls.png) -32px 0px no-repeat;
-}
-.ppVideoWrapper .controls button.leaveFullscreen {
-    background: url(./img/controls.png) -32px -16px no-repeat;
-    display: none;
-}
+        .ppVideoWrapper .controls button {
+            width: 16px;
+            height: 16px;
+            border: 0;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            background-image: url(./img/controls.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: 128px 32px;
+            -webkit-background-size: 128px 32px;
+        }
+        .ppVideoWrapper .controls button.play {
+            background-position: 0 0;
+        }
+        .ppVideoWrapper .controls button.pause {
+            background-position: 0 -16px;
+            display: none;
+        }
+        .ppVideoWrapper .controls button.unmute {
+            background-position: -16px 0px;
+            display: none;
+        }
+        .ppVideoWrapper .controls button.mute {
+            background-position: -16px -16px;
+        }
+        .ppVideoWrapper .controls button.enterFullscreen {
+            background-position: -32px 0px;
+        }
+        .ppVideoWrapper .controls button.leaveFullscreen {
+            background-position: -32px -16px;
+            display: none;
+        }
 
 
-.ppVideoWrapper .controls .timer {
-    font-size: 0.917em;
-    color: white;
-    width: 120px;
-}
+        .ppVideoWrapper .controls .timer {
+            font-size: 0.917em;
+            color: white;
+            width: 120px;
+        }
 
-.ppVideoWrapper .controls .progressBar {
-    display: block;
-    width: 100%;
-    height: 16px;
-    background: #333333 url(./img/progress-bg.png) 0 0 repeat-x;
-    cursor: col-resize;
-}
-:root .ppVideoWrapper .controls .progressBar {
-    border-radius: 3px;
-    background-image: linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
-    background-image: -o-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
-    background-image: -moz-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
-    background-image: -webkit-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
-    background-image: -ms-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
-    background-image: -webkit-gradient(
-            linear,
-            left top,
-            left bottom,
-            color-stop(0.03, rgb(30,30,30)),
-            color-stop(0.52, rgb(51,51,51))
-    );
-}
-.ppVideoWrapper .controls .progressBar > div {
-    pointer-events: none;
-    height: 100%;
-    width: 0%;
-    background: #ffffff url(./img/progress-bg.png) 0 -16px repeat-x;
-}
-:root .ppVideoWrapper .controls .progressBar > div {
-    border-radius: 3px;
-    background-image: linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
-    background-image: -o-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
-    background-image: -moz-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
-    background-image: -webkit-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
-    background-image: -ms-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
-    background-image: -webkit-gradient(
-            linear,
-            left top,
-            left bottom,
-            color-stop(0.03, rgb(255,255,255)),
-            color-stop(0.52, rgb(170,170,170))
-    );
-}
+        .ppVideoWrapper .controls .progressBar {
+            display: block;
+            width: 100%;
+            height: 16px;
+            background: #333333 url(./img/progress-bg.png) 0 0 repeat-x;
+            cursor: col-resize;
+        }
+        :root .ppVideoWrapper .controls .progressBar {
+            border-radius: 3px;
+            background-image: linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -o-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -moz-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -webkit-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -ms-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0.03, rgb(30,30,30)),
+                    color-stop(0.52, rgb(51,51,51))
+            );
+        }
+        .ppVideoWrapper .controls .progressBar > div {
+            pointer-events: none;
+            height: 100%;
+            width: 0%;
+            background: #ffffff url(./img/progress-bg.png) 0 -16px repeat-x;
+        }
+        :root .ppVideoWrapper .controls .progressBar > div {
+            border-radius: 3px;
+            background-image: linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -o-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -moz-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -webkit-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -ms-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0.03, rgb(255,255,255)),
+                    color-stop(0.52, rgb(170,170,170))
+            );
+        }
 
 :-webkit-full-screen:not(:root) {
 

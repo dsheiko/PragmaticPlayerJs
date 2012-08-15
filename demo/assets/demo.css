@@ -248,7 +248,7 @@ dt {
 dd {
     display: inline-block;
     vertical-align: top;
-    width: 600px;
+    min-width: 780px;
 }
 
 /**
