@@ -57,6 +57,7 @@
                                     autoplay: settings.autoplay,
                                     hd: settings.hd,
                                     wmode: "transparent",
+                                    rel: 0,
                                     origin: settings.origin
                                 },
                                 events: {
@@ -314,10 +315,25 @@
                    $( document ).on( "fullscreenchange", $.proxy(this.handleFullscreenChange, this));
                },
                getTimeByFloat: function( ctFloat ) {
-                    var t = {};
-                    t.sec = Math.floor( ctFloat );
-                    t.ms = Math.floor(ctFloat * 100 - t.sec * 100);
-                    t.ms.toString().length < 2 && (t.ms = "0" + t.ms); // 5 => "05"
+                    var t = {
+                            hours: 0,
+                            min: 0,
+                            sec: 0
+                        },
+                        minFloat = ctFloat / 60,
+                        hourFloat = minFloat / 60;
+
+                    if ( ctFloat ) {
+                        t.sec = Math.floor( ctFloat ); // if less than 60 sec
+                        t.min = Math.floor( minFloat ); // if less than 60 min
+                        t.hours = Math.floor( hourFloat );
+                        if ( t.hours ) {
+                            t.min = Math.floor( minFloat - ( t.hours * 60 ) );
+                        }
+                        if ( t.hours || t.min ) {
+                            t.sec = Math.floor( ctFloat - ( t.min * 60 ) - ( t.hours * 60 * 60 ) );
+                        }
+                    }
                     return t;
                },
                playVideo: function() {
@@ -392,16 +408,34 @@
                     $progressBarCursor.css({"width": progressPercents + "%"});
                 },
                 startTimer : function() {
-                    var timerFn, timerRef, timerOut = null, that = this;
+                    var timerFn, timerRef, timerOut = null, that = this,
+                        sprintf02d = function( val ) {
+                            val.toString().length < 2 && ( val = "0" + val ); // 5 => "05"
+                            return val;
+                        };
                     (function(delay){
                         timerRef = setTimeout( timerFn = function(){
                             if ( adapter.currentTime ) {
                                 var curTime = that.getTimeByFloat( adapter.currentTime() ),
-                                duration = that.getTimeByFloat( adapter.duration() ),
-                                progressPercents = Math.floor( (adapter.currentTime() * 100) /
-                                    adapter.duration() ),
-                                line = curTime.sec + ":" + curTime.ms
-                                    + " | " + duration.sec + ":" + duration.ms;
+                                    duration = that.getTimeByFloat( adapter.duration() ),
+                                    progressPercents = Math.floor( (
+                                        adapter.currentTime() * 100) / adapter.duration() ),
+                                    line;
+                                if ( duration.min ) {
+                                        curTime.sec = sprintf02d( curTime.sec );
+                                        duration.sec = sprintf02d( duration.sec );
+                                }
+                                if ( duration.hours ) {
+                                        curTime.min = sprintf02d( curTime.min );
+                                        duration.min = sprintf02d( duration.min );
+                                }
+                                line = ( duration.hours ? curTime.hours + ":" : "" )
+                                    + ( duration.min ? curTime.min + ":" : "" )
+                                    + curTime.sec
+                                    + " | "
+                                    + ( duration.hours ? duration.hours + ":" : "" )
+                                    + ( duration.min ? duration.min + ":" : "" )
+                                    + duration.sec;
 
                                 if ( timerOut !== line && !isNaN(duration.sec) ) {
                                     that.updateTimer( line );
@@ -413,7 +447,7 @@
                                 timerRef = setTimeout( timerFn, delay );
                             }
                         }, delay );
-                    })( 150 );
+                    })( 500 );
                }
            }
         };
