@@ -106,6 +106,7 @@ and (min-width : 1224px) {
             display: block;
             position: relative;
             margin: 0 auto;
+            padding: 0;
             background-image: url(./img/controls.png);
             background-color: transparent;
             background-repeat: no-repeat;
