@@ -228,12 +228,7 @@
                     window.setTimeout(function(){
                        if ( that.hasDivXWebPlayerOn() ) {
                             $boundingBox.html( "" );
-                            $boundingBox.pPlayer({
-                                youtubeVideoId: "YE7VzlLtp-4",
-                                autoplay: 0,
-                                adapter: "Youtube",
-                                origin: "http://os.sheiko.crylan.com"
-                            });
+                            $boundingBox.pPlayer(settings);
                        }
                    }, 500);
                },
