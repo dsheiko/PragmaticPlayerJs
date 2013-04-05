@@ -1,4 +1,4 @@
-PragmaticPlayerJs v. 0.2.1
+PragmaticPlayerJs v. 0.2.2
 =================
 
 Easy-to-customize responsive player for embedded Youtube or HTML5 videos
