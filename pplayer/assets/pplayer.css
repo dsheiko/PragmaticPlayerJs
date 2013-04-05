@@ -127,6 +127,24 @@ and (min-width : 1224px) {
         .ppVideoWrapper .controls button.mute {
             background-position: -16px -16px;
         }
+
+        .ppVideoWrapper .controls .quality {
+                font-size: 0.917em;
+                color: white;
+                width: 90px;
+            }
+        .ppVideoWrapper .controls .quality select {
+            border-radius: 5px 5px 0 0;
+            border: 0;
+            padding: 2px 5px;
+            background-color: #555555;
+            text-shadow: -1px -1px rgba(0,0,0,0.7);
+            color: white;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+
         .ppVideoWrapper .controls button.enterFullscreen {
             background-position: -32px 0px;
         }

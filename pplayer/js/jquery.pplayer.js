@@ -86,6 +86,9 @@
                         BUFFERING: 3,
                         CUED: 5
                     },
+                    getTarget: function() {
+                        return _player;
+                    },
                     play: function() {
                         _player.playVideo();
                     },
@@ -165,6 +168,8 @@
                     '    </div>',
                 progress:
                     '    <div><div class="progressBar"><div><!-- --></div></div></div>',
+                quality:
+                    '    <div class="quality"></div>',
                 timer:
                     '    <div class="timer">00:00 | 00:00</div>',
                 mute:
@@ -189,7 +194,8 @@
                $timer,
                $progressBar,
                $progressBarCursor,
-               backup;
+               $quality,
+               playingTrigger;
 
                settings = $.extend({
                     boundingBox: null,
@@ -198,14 +204,20 @@
                     hd: 1,
                     origin: undefined,
                     adapter: undefined, // "VideoElement" or "Youtube"
-                    features: [ "playpause", "progress", "timer", "mute", "fullscreen" ]
+                    features: [
+                        "playpause",
+                        "progress",
+                        settings.adapter === "Youtube" ? "quality" : null,
+                        "timer",
+                        "mute",
+                        "fullscreen" ]
                }, settings);
 
            return {
                getPlayerHtml: function() {
                    var html = '';
                    $.each(settings.features, function( inx, feature ) {
-                       html += tpls[ feature ];
+                       feature && ( html += tpls[ feature ] );
                    });
                    return '<div class="controls">' +
                     '     <div>' + html +
@@ -237,6 +249,8 @@
                        apapterClass,
                        videoElId = "pp-player" + _instanceCounter;
 
+                   playingTrigger = false;
+
                    $boundingBox.html( function(inx, html){
                        return '<div class="pp-video">' + html + '</div>' + that.getPlayerHtml()
                    });
@@ -248,6 +262,7 @@
                    $playBtn = $boundingBox.find('.controls button.play');
                    $muteBtn = $boundingBox.find('.controls button.mute');
                    $unmuteBtn = $boundingBox.find('.controls button.unmute');
+                   $quality = $boundingBox.find('.controls .quality');
                    $enterFullscreenBtn = $boundingBox.find('.controls button.enterFullscreen');
                    $leaveFullscreenBtn = $boundingBox.find('.controls button.leaveFullscreen');
                    $leaveFullscreenBtn.show =
@@ -286,7 +301,9 @@
                         onStateChange: function( e ) {
                             if ( e.data === adapter.state.PLAYING ) {
                                 $playBtn.hide();
-                                $pauseBtn.show()
+                                $pauseBtn.show();
+                                playingTrigger || that.onPlaying();
+                                playingTrigger = true;
                             } else {
                                 $playBtn.show();
                                 $pauseBtn.hide()
@@ -308,6 +325,33 @@
                    $( document ).on( "mozfullscreenchange", $.proxy(this.handleFullscreenChange, this));
                    $( document ).on( "webkitfullscreenchange", $.proxy(this.handleFullscreenChange, this));
                    $( document ).on( "fullscreenchange", $.proxy(this.handleFullscreenChange, this));
+               },
+               onPlaying: function() {
+                   var select = this.renderQualityOptions();
+                   // May happen http://stackoverflow.com/questions/1040346/how-to-stop-the-select-box-from-being-blocked-as-a-pop-up-bit-internet-explorer
+                   select.off( "change" ).on( "change", function() {
+                       adapter.getTarget().setPlaybackQuality( $( this ).val() );
+                   });
+               },
+               renderQualityOptions: function() {
+                   var html = '<select name="qualityLevel">',
+                       qLevelMap = {
+                           small: "240p",
+                           medium: "360p",
+                           large: "480p",
+                           hd720: "720p",
+                           hd1080: "1080p",
+                           highres: "highres"
+                       },
+                       options = adapter.getTarget().getAvailableQualityLevels(),
+                       level = adapter.getTarget().getPlaybackQuality();
+
+                   $.each(options, function(inx, val) {
+                       html += '<option title="Change quality" value="' + val + '" ' + ( level === val ? 'selected' : '' ) + '>'
+                           + ( qLevelMap[ val ] || val ) + '</option>';
+                   });
+                   html += '</select>';
+                   return $( html ).appendTo( $quality );
                },
                getTimeByFloat: function( ctFloat ) {
                     var t = {
