@@ -327,6 +327,9 @@
                    $( document ).on( "fullscreenchange", $.proxy(this.handleFullscreenChange, this));
                },
                onPlaying: function() {
+                   if ( adapter.getTarget === undefined ) {
+                       return;
+                   }
                    var select = this.renderQualityOptions();
                    // May happen http://stackoverflow.com/questions/1040346/how-to-stop-the-select-box-from-being-blocked-as-a-pop-up-bit-internet-explorer
                    select.off( "change" ).on( "change", function() {
@@ -334,6 +337,9 @@
                    });
                },
                renderQualityOptions: function() {
+                   if ( adapter.getTarget === undefined ) {
+                       return;
+                   }
                    var html = '<select name="qualityLevel">',
                        qLevelMap = {
                            small: "240p",
