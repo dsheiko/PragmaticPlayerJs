@@ -413,7 +413,7 @@
                     }
                 },
                 enterFullscreen: function() {
-                    $boundingBox.addClass( "fullscreen" );
+                    $("body").addClass( "fullscreen" );
                     $enterFullscreenBtn.hide();
                     $leaveFullscreenBtn.show();
                     var elem = $boundingBox.get(0);
@@ -426,7 +426,7 @@
                     }
                 },
                 leaveFullscreen: function() {
-                    $boundingBox.removeClass( "fullscreen" );
+                    $("body").removeClass( "fullscreen" );
                     $enterFullscreenBtn.show();
                     $leaveFullscreenBtn.hide();
                     if (document.cancelFullScreen) {

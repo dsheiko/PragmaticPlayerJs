@@ -38,7 +38,7 @@
         height: 100%;
     }
 
-    .ppVideoWrapper.fullscreen {
+    body.fullscreen .ppVideoWrapper {
         position: fixed;
         z-index: 50000;
         left: 0;
