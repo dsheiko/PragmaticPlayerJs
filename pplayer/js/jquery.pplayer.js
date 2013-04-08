@@ -502,6 +502,7 @@
             }, settings));
             _instanceCounter++;
             player.renderUI().syncUI();
+            return player;
         }
 
 }( window ));

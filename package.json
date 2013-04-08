@@ -1,7 +1,7 @@
 {
   "name": "PragmaticPlayerJs",
   "title": "Easy-to-customize responsive player for embedded Youtube or HTML5 videos",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Dmitry Sheiko",
   "description": "This player has adapters for Youtube and HTML video APIs. So you can use it as customizable Youtube player or as HTML video player with fallback to Youtube player if the user browser doesn't support HTML5 video element.",
   "homepage": "http://demo.dsheiko.com/pplayer/",

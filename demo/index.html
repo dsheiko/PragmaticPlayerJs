@@ -66,11 +66,14 @@
 <div id="youtube-video"><!-- --></div>
                     </textarea>
                     <textarea class="code" rows="5">
-$("#youtube-video").pPlayer({
+var player = $("#youtube-video").pPlayer({
     youtubeVideoId: "YE7VzlLtp-4",
     autoplay: 0,
     origin: "http://yoursite.com"
 });
+// Access to player object
+// player.stopVideo();
+
                     </textarea>
 
 <p>HTML video player</p>
