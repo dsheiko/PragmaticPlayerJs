@@ -56,3 +56,6 @@ adapter
     Used to specify video API adapter explicitly. Can be either VideoElement or Youtube
 features
     List of enabled features. By default it is ["playpause", "progress", "quality", "timer", "mute", "fullscreen"]
+
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fdc2dd99723a8d1bc52be499fe84bf67 "githalytics.com")](http://githalytics.com/dsheiko/PragmaticPlayerJs)
