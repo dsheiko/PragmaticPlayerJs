@@ -58,4 +58,4 @@ features
     List of enabled features. By default it is ["playpause", "progress", "quality", "timer", "mute", "fullscreen"]
 
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fdc2dd99723a8d1bc52be499fe84bf67 "githalytics.com")](http://githalytics.com/dsheiko/PragmaticPlayerJs)
+[![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/PragmaticPlayerJs)](http://githalytics.com/dsheiko/PragmaticPlayerJs)
