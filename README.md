@@ -44,18 +44,29 @@ HTML video player
 
 ### Available Options
 
-youtubeVideoId
-    The YouTube video ID that identifies the video that the player will load.
-autoplay
-    Values: 0 or 1. Default is 0. Sets whether or not the initial video will autoplay when the player loads.
-hd
-    Values: 0 or 1. Default is 1. Setting to 1 enables HD playback by default.
-origin
-    As an extra security measure, you should include the origin parameter to the URL, specifying the URL scheme (http:// or https://) and full domain of your host page as the parameter value. While origin is optional, including it protects against malicious third-party JavaScript being injected into your page and hijacking control of your player.
-adapter
-    Used to specify video API adapter explicitly. Can be either VideoElement or Youtube
-features
-    List of enabled features. By default it is ["playpause", "progress", "quality", "timer", "mute", "fullscreen"]
+`youtubeVideoId`
+- The YouTube video ID that identifies the video that the player will load.
+
+`autoplay`
+- Values: 0 or 1. Default is 0.
+  Sets whether or not the initial video will autoplay when the player
+
+`loads.hd`
+- Values: 0 or 1. Default is 1.
+  Setting to 1 enables HD playback by default.
+
+`origin`
+- As an extra security measure, you should include the origin parameter to the URL,
+  specifying the URL scheme (`http://` or `https://`) and
+  full domain of your host page as the parameter value.
+  While origin is optional, including it protects against malicious third-party
+  JavaScript being injected into your page and hijacking control of your player.
+
+`adapter`
+- Used to specify video API adapter explicitly. Can be either VideoElement or Youtube.
+
+`features`
+- List of enabled features. By default it is `["playpause", "progress", "quality", "timer", "mute",   "fullscreen"]`
 
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/PragmaticPlayerJs)](http://githalytics.com/dsheiko/PragmaticPlayerJs)
