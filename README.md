@@ -59,3 +59,6 @@ features
 
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/PragmaticPlayerJs)](http://githalytics.com/dsheiko/PragmaticPlayerJs)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dsheiko/pragmaticplayerjs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
