@@ -1,22 +1,31 @@
 {
   "name": "PragmaticPlayerJs",
   "title": "Easy-to-customize responsive player for embedded Youtube or HTML5 videos",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "author": "Dmitry Sheiko",
   "description": "This player has adapters for Youtube and HTML video APIs. So you can use it as customizable Youtube player or as HTML video player with fallback to Youtube player if the user browser doesn't support HTML5 video element.",
   "homepage": "http://demo.dsheiko.com/pplayer/",
   "licenses": [
-   {
-       "type": "MIT"
-   }],
+    {
+      "type": "MIT"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dsheiko/PragmaticPlayerJs"
   },
-  "main": "./pplayer/js/jquery.pplayer.js",
-  "dependencies": {
-      "jquery" : "jquery.com"
+  "scripts": {
+    "build": "webpack ."
   },
-  "engines": {
-  }
+  "main": "./pplayer.js",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.3.0"
+  },
+  "engines": {}
 }

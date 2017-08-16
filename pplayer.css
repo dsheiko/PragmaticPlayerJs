@@ -1,0 +1,218 @@
+/*
+<div class="ppVideoWrapper">
+...
+    <div class="pp-video"><!-- --></div>
+    <div class="controls">
+        <div>
+            <div class="button">
+            <button class="pause"><!-- --></button>
+            <button class="play"><!-- --></button>
+        </div>
+        <div><div class="progressBar"><div><!-- --></div></div></div>
+        <div class="timer">00:00 | 00:00</div>
+        <div class="button">
+            <button class="mute"><!-- --></button>
+            <button class="unmute"><!-- --></button>
+        </div>
+    </div>
+    </div>
+</div>
+*/
+
+/* http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+
+.ppVideoWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    overflow: hidden;
+    background: url(./assets/img/loading.gif) center center no-repeat;
+}
+    .ppVideoWrapper .is-hidden {
+      display: none !important;
+    }
+    .ppVideoWrapper video,
+    .ppVideoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    body.fullscreen .ppVideoWrapper {
+        position: fixed;
+        z-index: 50000;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding: 0;
+        height: 100%;
+        overflow: none;
+    }
+
+    .ppVideoWrapper .controls {
+        position: absolute;
+        display: table;
+        table-layout: fixed;
+        height: 35px;
+        width: 100%;
+        bottom: 0;
+        background-color: #191919;
+    }
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+    .ppVideoWrapper .controls {
+         transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        -o-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+
+        transition: transform 500ms;
+        -moz-transition: -moz-transform 500ms;
+        -webkit-transition: -webkit-transform 500ms;
+        -o-transition: -o-transform 500ms;
+        -ms-transition: -ms-transform 500ms;
+    }
+    .ppVideoWrapper:hover .controls {
+        transform: translateY(0);
+        -moz-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -o-transform: translateY(0);
+        -ms-transform: translateY(0);
+    }
+}
+
+        .ppVideoWrapper .controls > div {
+            display: table-row;
+        }
+        .ppVideoWrapper .controls > div > * {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            height: 35px;
+        }
+        .ppVideoWrapper .controls > div > .button {
+            width: 32px;
+        }
+
+        .ppVideoWrapper .controls button {
+            width: 16px;
+            height: 16px;
+            border: 0;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+            background-image: url(./assets/img/controls.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: 128px 32px;
+            -webkit-background-size: 128px 32px;
+        }
+        .ppVideoWrapper .controls button.play {
+            background-position: 0 0;
+        }
+        .ppVideoWrapper .controls button.pause {
+            background-position: 0 -16px;
+            display: none;
+        }
+        .ppVideoWrapper .controls button.unmute {
+            background-position: -16px 0px;
+            display: none;
+        }
+        .ppVideoWrapper .controls button.mute {
+            background-position: -16px -16px;
+        }
+
+        .ppVideoWrapper .controls .quality {
+                font-size: 0.917em;
+                color: white;
+                width: 90px;
+            }
+        .ppVideoWrapper .controls .quality select {
+            border-radius: 5px 5px 0 0;
+            border: 0;
+            padding: 2px 5px;
+            background-color: #555555;
+            text-shadow: -1px -1px rgba(0,0,0,0.7);
+            color: white;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+
+        .ppVideoWrapper .controls button.enterFullscreen {
+            background-position: -32px 0px;
+        }
+        .ppVideoWrapper .controls button.leaveFullscreen {
+            background-position: -32px -16px;
+            display: none;
+        }
+
+
+        .ppVideoWrapper .controls .timer {
+            font-size: 0.917em;
+            color: white;
+            width: 120px;
+        }
+
+        .ppVideoWrapper .controls .progressBar {
+            display: block;
+            width: 100%;
+            height: 16px;
+            background: #333333 url(./assets/img/progress-bg.png) 0 0 repeat-x;
+            cursor: col-resize;
+        }
+        :root .ppVideoWrapper .controls .progressBar {
+            border-radius: 3px;
+            background-image: linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -o-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -moz-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -webkit-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -ms-linear-gradient(top, rgb(30,30,30) 3%, rgb(51,51,51) 52%);
+            background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0.03, rgb(30,30,30)),
+                    color-stop(0.52, rgb(51,51,51))
+            );
+        }
+        .ppVideoWrapper .controls .progressBar > div {
+            pointer-events: none;
+            height: 100%;
+            width: 0%;
+            background: #ffffff url(./assets/img/progress-bg.png) 0 -16px repeat-x;
+        }
+        :root .ppVideoWrapper .controls .progressBar > div {
+            border-radius: 3px;
+            background-image: linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -o-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -moz-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -webkit-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -ms-linear-gradient(top, rgb(255,255,255) 3%, rgb(170,170,170) 52%);
+            background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0.03, rgb(255,255,255)),
+                    color-stop(0.52, rgb(170,170,170))
+            );
+        }
+
+:-webkit-full-screen:not(:root) {
+
+}
+:-webkit-full-screen .ppVideoWrapper {
+  width: 100%;
+}
+:-moz-full-screen .ppVideoWrapper {
+  display: none;
+}

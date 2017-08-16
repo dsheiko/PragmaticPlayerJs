@@ -15,32 +15,23 @@ The player is aware of the vandalic way DivX embeds its own web player when inst
 Include player script and CSS on the page:
 
 <link rel="stylesheet" type="text/css" href="../pplayer/assets/pplayer.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../pplayer/assets/pplayer.js"></script>
 
 Youtube player
 
-    <div id="youtube-video"><!-- --></div>
+```
+<pplayer youtubeVideoId="YE7VzlLtp-4" autoplay="0" origin="http://yoursite.com"></pplayer>
+```
 
-    $("#youtube-video").pPlayer({
-        youtubeVideoId: "YE7VzlLtp-4",
-        autoplay: 0,
-        origin: "http://yoursite.com"
-    });
-
-HTML video player
-
-    <div id="html5-video">
-        <video poster="./assets/poster.jpg" preload="true">
-                <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+HTML video player with fallback for Youtube (YE7VzlLtp-4)
+  <pplayer youtubeVideoId="YE7VzlLtp-4" >
+      <video poster="./assets/poster.jpg" preload="true">
+            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
             <source type="video/mp4" src="./assets/test.mp4" />
             <!-- Ogg/Vorbis for older Firefox and Opera versions -->
             <source type="video/ogg" src="./assets/test.ogv" />
-        </video>
-    </div>
-
-    $("#html5-video").pPlayer({
-        youtubeVideoId: "YE7VzlLtp-4" // Youtube fallback
-    });
+      </video>
+  </pplayer>
 
 ### Available Options
 
