@@ -14,9 +14,11 @@ The player is aware of the vandalic way DivX embeds its own web player when inst
 
 Include player script and CSS on the page:
 
+```
 <link rel="stylesheet" type="text/css" href="../pplayer/assets/pplayer.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../pplayer/assets/pplayer.js"></script>
+```
 
 Youtube player
 
