@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>PragmaticPlayer.Js - Vanilla JavaScript Edition</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="shortcut icon" href="./assets/favicon.ico" />
+        <link rel="icon" href="./assets/favicon.ico" type="image/ico">
+        <link rel="stylesheet" type="text/css" href="./assets/demo.css" />
+        <link rel="stylesheet" type="text/css" href="../pplayer/assets/pplayer.css" />
+        <link rel="publisher" href="https://plus.google.com/113857365337532405020" />
+        <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
+        <link rel="demo" href="http://demo.dsheiko.com/pplayer" title="Pragmatic Player" />
+    </head>
+    <body>
+        <header role="banner">
+            <div>
+                <hgroup>
+                    <h1>PragmaticPlayer.Js - Vanilla JavaScript</h1>
+                    <h2>Dependency-free responsive player for embedded Youtube or HTML5 videos</h2>
+                </hgroup>
+                <a class="fork" href="https://github.com/dsheiko/PragmaticPlayerJs">Fork Me on GitHub</a>
+            </div>
+        </header>
+        <section role="main">
+            <div>
+                <article>
+                    <h2>Introduction</h2>
+                    <p>This is the modern, jQuery-free version of the PragmaticPlayer. It supports YouTube and HTML5 video APIs with advanced features including keyboard shortcuts, volume control, and playback rate selection.</p>
+                    <p>Features include:</p>
+                    <ul>
+                        <li>Zero dependencies - pure vanilla JavaScript</li>
+                        <li>Keyboard shortcuts (Space, M, F, arrow keys)</li>
+                        <li>Volume slider with granular control</li>
+                        <li>Playback rate selection (0.5x to 2x)</li>
+                        <li>Fullscreen support with multiple API fallbacks</li>
+                        <li>Accessibility features (ARIA labels)</li>
+                        <li>Custom event system</li>
+                        <li>Touch-friendly controls</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h2>YouTube Player Demo</h2>
+                    <div id="youtube-video"><!-- --></div>
+                </article>
+
+                <article>
+                    <h2>HTML5 Video Player Demo</h2>
+                    <div id="html5-video">
+                        <video poster="http://demo.dsheiko.com/pplayer/assets/poster.jpg" preload="metadata">
+                            <source type="video/mp4" src="http://demo.dsheiko.com/pplayer/assets/test.mp4" />
+                            <source type="video/ogg" src="http://demo.dsheiko.com/pplayer/assets/test.ogv" />
+                        </video>
+                    </div>
+                </article>
+
+                <article>
+                    <h2>Usage and API</h2>
+
+                    <p><strong>Include player script and CSS:</strong></p>
+                    <textarea class="code">
+&lt;link rel="stylesheet" type="text/css" href="../pplayer/assets/pplayer.css" /&gt;
+&lt;script src="../pplayer/js/pplayer.js"&gt;&lt;/script&gt;
+                    </textarea>
+
+                    <p><strong>YouTube Player:</strong></p>
+                    <textarea class="code">
+&lt;div id="youtube-video"&gt;&lt;!-- --&gt;&lt;/div&gt;
+                    </textarea>
+                    <textarea class="code" rows="7">
+const youtubePlayer = new PragmaticPlayer(
+    document.getElementById('youtube-video'),
+    {
+        youtubeVideoId: 'YE7VzlLtp-4',
+        autoplay: false,
+        origin: 'http://yoursite.com'
+    }
+);
+
+// Listen to events
+youtubePlayer.on('play', () => console.log('Video started'));
+                    </textarea>
+
+                    <p><strong>HTML5 Video Player:</strong></p>
+                    <textarea class="code" rows="10">
+&lt;div id="html5-video"&gt;
+    &lt;video poster="./assets/poster.jpg" preload="metadata"&gt;
+        &lt;source type="video/mp4" src="./assets/test.mp4" /&gt;
+    &lt;/video&gt;
+&lt;/div&gt;
+                    </textarea>
+                    <textarea class="code" rows="9">
+const html5Player = new PragmaticPlayer(
+    document.getElementById('html5-video'),
+    {
+        features: ['playpause', 'progress', 'timer', 'mute', 'volume', 'playbackRate', 'fullscreen'],
+        enableKeyboard: true
+    }
+);
+
+// Access player state
+const state = html5Player.getState();
+console.log('Current time:', state.currentTime);
+                    </textarea>
+
+                    <h3>Keyboard Shortcuts</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>Space</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Play / Pause</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>M</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Toggle Mute</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>F</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Fullscreen</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>Arrow Right</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Seek +5 seconds</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>Arrow Left</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Seek -5 seconds</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>Arrow Up</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Volume +10%</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #ccc;"><strong>Arrow Down</strong></td>
+                            <td style="padding: 8px; border: 1px solid #ccc;">Volume -10%</td>
+                        </tr>
+                    </table>
+
+                    <h3>Available Options</h3>
+                    <dl>
+                        <dt>youtubeVideoId</dt>
+                        <dd>The YouTube video ID (required for YouTube adapter)</dd>
+
+                        <dt>autoplay</dt>
+                        <dd>Boolean. Default: <var>false</var>. Auto-start playback</dd>
+
+                        <dt>hd</dt>
+                        <dd>Boolean. Default: <var>true</var>. Enable HD playback for YouTube</dd>
+
+                        <dt>origin</dt>
+                        <dd>String. Your site origin for YouTube API security</dd>
+
+                        <dt>adapter</dt>
+                        <dd>String. Force adapter: <var>"Youtube"</var> or <var>"VideoElement"</var></dd>
+
+                        <dt>features</dt>
+                        <dd>Array. Default: <var>['playpause', 'progress', 'timer', 'mute', 'fullscreen', 'volume']</var>. Available: <var>playpause</var>, <var>progress</var>, <var>quality</var>, <var>timer</var>, <var>mute</var>, <var>fullscreen</var>, <var>volume</var>, <var>playbackRate</var></dd>
+
+                        <dt>enableKeyboard</dt>
+                        <dd>Boolean. Default: <var>true</var>. Enable keyboard shortcuts</dd>
+                    </dl>
+
+                    <h3>Events API</h3>
+                    <textarea class="code" rows="12">
+// Listen to player events
+player.on('ready', () => {
+    console.log('Player is ready');
+});
+
+player.on('play', () => {
+    console.log('Video started playing');
+});
+
+player.on('pause', () => {
+    console.log('Video paused');
+});
+
+player.on('timeupdate', (data) => {
+    console.log('Current time:', data.current, 'Duration:', data.duration);
+});
+                    </textarea>
+
+                    <h3>Public Methods</h3>
+                    <textarea class="code" rows="18">
+// Control playback
+player.playVideo();
+player.pauseVideo();
+player.togglePlayPause();
+player.muteVideo();
+player.unmuteVideo();
+player.toggleMute();
+
+// Fullscreen
+player.enterFullscreen();
+player.leaveFullscreen();
+player.toggleFullscreen();
+
+// Get state
+const state = player.getState();
+// { isPlaying, currentTime, duration, isFullscreen }
+
+// Get adapter
+const adapter = player.getAdapter();
+
+// Cleanup
+player.destroy();
+                    </textarea>
+
+                </article>
+
+                <div class="download">
+                    <a class="btn btn-inverse btn-large" href="https://github.com/dsheiko/PragmaticPlayerJs">Download from GitHub</a>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <article>
+                <p><var>PragmaticPlayer.Js</var> is created by <a href="http://dsheiko.com">Dmitry Sheiko</a>.
+                    It's released under the <a href="http://opensource.org/licenses/mit-license.php/">MIT</a> license. </p>
+                <p>
+                    The <a href="http://www.bigbuckbunny.org">"Big Buck Bunny"</a> movie used in this example created by <a href="http://www.bigbuckbunny.org">Blender Foundation</a> and licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> license.
+                </p>
+            </article>
+        </footer>
+
+        <script type="text/javascript" src="../pplayer/js/pplayer.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                // YouTube player
+                const youtubePlayer = new PragmaticPlayer(
+                    document.getElementById('youtube-video'),
+                    {
+                        youtubeVideoId: 'YE7VzlLtp-4',
+                        autoplay: false,
+                        features: ['playpause', 'progress', 'quality', 'timer', 'mute', 'volume', 'playbackRate', 'fullscreen'],
+                        enableKeyboard: true
+                    }
+                );
+
+                youtubePlayer.on('ready', () => console.log('YouTube player ready'));
+
+                // HTML5 video player
+                const html5Player = new PragmaticPlayer(
+                    document.getElementById('html5-video'),
+                    {
+                        autoplay: false,
+                        features: ['playpause', 'progress', 'timer', 'mute', 'volume', 'playbackRate', 'fullscreen'],
+                        enableKeyboard: true
+                    }
+                );
+
+                html5Player.on('ready', () => console.log('HTML5 player ready'));
+            });
+        </script>
+    </body>
+</html>

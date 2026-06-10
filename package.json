@@ -1,22 +1,24 @@
 {
-  "name": "PragmaticPlayerJs",
-  "title": "Easy-to-customize responsive player for embedded Youtube or HTML5 videos",
-  "version": "0.2.4",
+  "name": "pragmatic-player-js",
+  "version": "2.0.0",
+  "description": "Easy-to-customize responsive video player for YouTube and HTML5 videos. Available as a zero-dependency vanilla JavaScript version and a legacy jQuery version.",
   "author": "Dmitry Sheiko",
-  "description": "This player has adapters for Youtube and HTML video APIs. So you can use it as customizable Youtube player or as HTML video player with fallback to Youtube player if the user browser doesn't support HTML5 video element.",
-  "homepage": "http://demo.dsheiko.com/pplayer/",
-  "licenses": [
-   {
-       "type": "MIT"
-   }],
+  "license": "MIT",
+  "homepage": "https://github.com/dsheiko/PragmaticPlayerJs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dsheiko/PragmaticPlayerJs"
+    "url": "git+https://github.com/dsheiko/PragmaticPlayerJs.git"
   },
-  "main": "./pplayer/js/jquery.pplayer.js",
-  "dependencies": {
-      "jquery" : "jquery.com"
+  "bugs": {
+    "url": "https://github.com/dsheiko/PragmaticPlayerJs/issues"
   },
-  "engines": {
-  }
+  "keywords": [
+    "video-player",
+    "youtube",
+    "html5-video",
+    "responsive",
+    "vanilla-js",
+    "jquery"
+  ],
+  "main": "./pplayer/js/pplayer.js"
 }
