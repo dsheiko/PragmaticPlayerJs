@@ -4,9 +4,6 @@
 
 An easy-to-customize responsive video player for YouTube and HTML5 videos with zero dependencies (vanilla version) or jQuery (legacy version).
 
-- **Project**: https://github.com/dsheiko/PragmaticPlayerJs
-- **Demo**: http://demo.dsheiko.com/pplayer/
-
 ## Features
 
 - **Dual versions**: jQuery plugin (legacy) or vanilla JavaScript (modern)
